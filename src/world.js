@@ -1,1 +1,2 @@
-module.exports = 'world'
+// module.exports = 'world'
+export default 'world'

@@ -1,5 +1,5 @@
 const path = require('path')
-const webpack = require('webpack')
+// const webpack = require('webpack')
 
 module.exports = {
   // context: path.resolve(__dirname, '../'), // 默认当前工作目录 process.cwd()
@@ -10,13 +10,13 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].js',
-    publicPath: 'http://cdn.example.com/assets/assets/',
-    library: 'myLab', // '[name]'
+    // publicPath: 'http://cdn.example.com/assets/assets/',
+    library: '[name]', // '[name]'
     libraryTarget: 'umd'
   },
   mode: 'development',
   // target: 'web', // 默认 web
-  devtool: 'cheap-module-eval-source-map', // source-map
+  // devtool: 'cheap-module-eval-source-map', // source-map
   watch: true,
   resolve: {
     // 帮助 webpack解析扩展名（文件后缀）的配置，默认值：['.wasm', '.mjs', '.js', '.json']
@@ -76,6 +76,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin()
+    // new webpack.optimize.UglifyJsPlugin()
   ]
 }

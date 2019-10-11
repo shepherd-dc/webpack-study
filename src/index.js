@@ -1,13 +1,18 @@
-const hello = require('./hello')
-const world = require('./world')
-// const babel = require('./babel')
+import hello from './hello'
+import(
+  /*
+  webpackChunkName: 'world'
+  */
+  'src/world'
+).then(({default: mod})=> {
+  console.log(mod)
+})
 
-console.log(`${hello} ${world}`)
-// console.log(babel)
+console.log(hello)
 
 export default class myLab {
   constructor (a) {
     this.a = a
-    console.log(a)
+    // console.log(a)
   }
 }
