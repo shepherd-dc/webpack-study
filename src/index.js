@@ -7,8 +7,9 @@ import(
 ).then(({default: mod})=> {
   console.log(mod)
 })
-
 console.log(hello)
+
+import babel from './babel'
 
 export default class myLab {
   constructor (a) {
