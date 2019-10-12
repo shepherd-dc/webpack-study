@@ -4,7 +4,7 @@ const path = require('path')
 module.exports = {
   // context: path.resolve(__dirname, '../'), // 默认当前工作目录 process.cwd()
   entry: {
-    main: path.resolve(__dirname, './src/index.js'),
+    main: path.resolve(__dirname, './src/index.js')
     // list: path.resolve(__dirname, './src/list.js')
   },
   output: {
@@ -26,7 +26,7 @@ module.exports = {
     alias: {
       src: path.resolve(__dirname, 'src'),
       '@lib': path.resolve(__dirname, 'src/lib')
-    },
+    }
     // mainFields: ['browser', 'module', 'main'], // target=web对应的默认值
   },
   module: {
@@ -39,37 +39,45 @@ module.exports = {
     //     // 返回 true or false
     //     return /jquery|lodash/.test(content);
     // },
-    rules: [
-      {
-        test: /\.js$/, // 条件匹配
-        use: [ // 应用规则
-          {
-            loader: 'babel-loader',
-            // options: {
-            //   presets: [
-            //     [
-            //       '@babel/preset-env'
-            //     ]
-            //   ]
-            // }
-          }
-        ],
-        // enforce:'post' 代表把该 loader 的执行顺序放到最后
-        // enforce:'pre'，代表把该 loader 的执行顺序放到最前
-        enforce: 'post',
-        // parser语法层面限制解析的模块
-        parser: {
-          // amd: false, // 禁用 AMD
-          // commonjs: false, // 禁用 CommonJS
-          // system: false, // 禁用 SystemJS
-          // harmony: false, // 禁用 ES6 import/export
-          // requireInclude: false, // 禁用 require.include
-          // requireEnsure: false, // 禁用 require.ensure
-          // requireContext: false, // 禁用 require.context
-          // browserify: false, // 禁用 browserify
-          // requireJs: false, // 禁用 requirejs
+    rules: [{
+      test: /\.js$/, // 条件匹配
+      use: [ // 应用规则
+        {
+          loader: 'babel-loader'
+          // options: {
+          //   presets: [
+          //     [
+          //       '@babel/preset-env'
+          //     ]
+          //   ]
+          // }
         }
+      ],
+      // enforce:'post' 代表把该 loader 的执行顺序放到最后
+      // enforce:'pre'，代表把该 loader 的执行顺序放到最前
+      enforce: 'post',
+      // parser语法层面限制解析的模块
+      parser: {
+        // amd: false, // 禁用 AMD
+        // commonjs: false, // 禁用 CommonJS
+        // system: false, // 禁用 SystemJS
+        // harmony: false, // 禁用 ES6 import/export
+        // requireInclude: false, // 禁用 require.include
+        // requireEnsure: false, // 禁用 require.ensure
+        // requireContext: false, // 禁用 require.context
+        // browserify: false, // 禁用 browserify
+        // requireJs: false, // 禁用 requirejs
       }
+    },
+    {
+      test: /\.(js|vue)$/,
+      loader: 'eslint-loader',
+      enforce: 'pre',
+      include: [path.resolve(__dirname, 'src')], // 指定检查的目录
+      options: { // 这里的配置项参数将会被传递到 eslint 的 CLIEngine
+        formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
+      }
+    }
     ]
   },
   plugins: [
