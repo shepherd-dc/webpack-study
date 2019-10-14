@@ -1,5 +1,6 @@
 const path = require('path')
 // const webpack = require('webpack')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   // context: path.resolve(__dirname, '../'), // 默认当前工作目录 process.cwd()
@@ -39,11 +40,12 @@ module.exports = {
     //     // 返回 true or false
     //     return /jquery|lodash/.test(content);
     // },
-    rules: [{
-      test: /\.js$/, // 条件匹配
-      use: [ // 应用规则
-        {
-          loader: 'babel-loader'
+    rules: [
+      {
+        test: /\.js$/, // 条件匹配
+        use: [ // 应用规则
+          {
+            loader: 'babel-loader'
           // options: {
           //   presets: [
           //     [
@@ -51,13 +53,13 @@ module.exports = {
           //     ]
           //   ]
           // }
-        }
-      ],
-      // enforce:'post' 代表把该 loader 的执行顺序放到最后
-      // enforce:'pre'，代表把该 loader 的执行顺序放到最前
-      enforce: 'post',
-      // parser语法层面限制解析的模块
-      parser: {
+          }
+        ],
+        // enforce:'post' 代表把该 loader 的执行顺序放到最后
+        // enforce:'pre'，代表把该 loader 的执行顺序放到最前
+        enforce: 'post',
+        // parser语法层面限制解析的模块
+        parser: {
         // amd: false, // 禁用 AMD
         // commonjs: false, // 禁用 CommonJS
         // system: false, // 禁用 SystemJS
@@ -67,20 +69,42 @@ module.exports = {
         // requireContext: false, // 禁用 require.context
         // browserify: false, // 禁用 browserify
         // requireJs: false, // 禁用 requirejs
+        }
+      },
+      {
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [path.resolve(__dirname, 'src')], // 指定检查的目录
+        options: { // 这里的配置项参数将会被传递到 eslint 的 CLIEngine
+          formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
+        }
+      },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
+      },
+      {
+        test: /\.less$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 2 // 0 => 默认，没有 loader; 1 => postcss-loader; 2 => postcss-loader, sass-loader
+            }
+          },
+          'less-loader',
+          'postcss-loader'
+        ]
       }
-    },
-    {
-      test: /\.(js|vue)$/,
-      loader: 'eslint-loader',
-      enforce: 'pre',
-      include: [path.resolve(__dirname, 'src')], // 指定检查的目录
-      options: { // 这里的配置项参数将会被传递到 eslint 的 CLIEngine
-        formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
-      }
-    }
     ]
   },
   plugins: [
-    // new webpack.optimize.UglifyJsPlugin()
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    })
   ]
 }
