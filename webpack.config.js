@@ -13,9 +13,9 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './dist'),
+    // publicPath: path.resolve(__dirname, './public'),
     filename: 'main.js',
     // filename: '[name].js',
-    // publicPath: 'http://cdn.example.com/assets/assets/',
     // library: '[name]', // '[name]'
     library: 'myLib',
     libraryTarget: 'umd',
@@ -23,8 +23,8 @@ module.exports = {
   },
   mode: 'development',
   // target: 'web', // 默认 web
-  // devtool: 'cheap-module-eval-source-map', // source-map
-  watch: true,
+  devtool: 'cheap-module-eval-source-map', // source-map
+  // watch: true,
   resolve: {
     // 帮助 webpack解析扩展名（文件后缀）的配置，默认值：['.wasm', '.mjs', '.js', '.json']
     // 所以引入js和json文件可以不写拓展名
@@ -148,17 +148,17 @@ module.exports = {
       },
       {
         // 文件解析
-        test: /\.(eot|woff|ttf|woff2|appcache|mp4|pdf)(\?|$)/,
+        test: /\.(ico|eot|woff|ttf|woff2|appcache|mp4|pdf)(\?|$)/,
         loader: 'file-loader',
         query: {
           // 这么多文件，ext不同，所以需要使用[ext]
-          name: 'assets/[name].[hash:7].[ext]'
+          name: '@assets/[name].[hash:7].[ext]'
         }
       }
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: path.join(__dirname, './public'),
     port: 9000,
     hot: true,
     inline: true,
@@ -170,8 +170,9 @@ module.exports = {
       chunkFilename: '[id].css'
     }),
     new HtmlWebPackPlugin({
-      template: './public/index.html', // 模板路径
-      inject: true // 自动注入js, 默认true
+      template: path.join(__dirname, './public', 'index.html'), // 模板路径
+      inject: 'head', // 自动注入js位置, 默认true('body')
+      favicon: path.join(__dirname, './public', 'favicon.ico') // favicon图标
     }),
     // 添加热替换 HMR plugin
     new webpack.HotModuleReplacementPlugin()

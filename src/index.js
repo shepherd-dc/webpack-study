@@ -1,8 +1,6 @@
 import hello from './test/hello'
 
-console.log(hello)
-
-document.querySelector('#app').innerHTML = 'Hello Webpack'
+console.log(hello, 666666)
 
 export default class myLab {
   constructor (a) {
