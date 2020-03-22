@@ -1,7 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
-const eslintFriendlyFormatter = require('eslint-friendly-formatter')
 const autoprefixer = require('autoprefixer')
+const eslintFriendlyFormatter = require('eslint-friendly-formatter')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 
@@ -98,25 +98,32 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              // 通过 plugins 选项
+            // 通过 plugins 选项
               plugins: [autoprefixer()]
             }
           }
-        ] // 编译顺序从右往左
+        ]
       },
       {
         test: /\.less$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 2 // 0 => 默认，没有 loader; 1 => postcss-loader; 2 => postcss-loader, sass-loader
+            }
+          },
           'less-loader',
           {
             loader: 'postcss-loader',
             options: {
+              // 通过 plugins 选项
               plugins: [autoprefixer()]
             }
           }
-        ] // 编译顺序从右往左
+        ]
       },
       {
         test: /\.(png|jpg|gif)$/,
