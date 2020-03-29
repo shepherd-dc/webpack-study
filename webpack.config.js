@@ -26,10 +26,6 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map', // source-map
   // watch: true,
   resolve: {
-    // 帮助 webpack解析扩展名（文件后缀）的配置，默认值：['.wasm', '.mjs', '.js', '.json']
-    // 所以引入js和json文件可以不写拓展名
-    extensions: ['.js', '.json', '.vue', '.less', '.css'],
-    // 别名
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@assets': path.resolve(__dirname, './src/assets')
@@ -162,7 +158,8 @@ module.exports = {
     port: 9000,
     hot: true,
     inline: true,
-    progress: true
+    progress: true,
+    open: true
   },
   plugins: [
     new MiniCssExtractPlugin({

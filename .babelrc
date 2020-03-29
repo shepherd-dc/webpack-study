@@ -22,6 +22,7 @@
     //     "corejs": false, //默认，可以不写
     //     "helpers": true //默认，可以不写
     //   }
-    // ]
+    // ],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }]
   ]   
 }
