@@ -57,16 +57,16 @@ module.exports = {
         use: [ // 应用规则
           {
             loader: 'babel-loader',
-            options: {
-              presets: [
-                [
-                  '@babel/preset-env'
-                  // {
-                  //   useBuiltIns: 'usage',
-                  //   corejs: 3
-                  // }
-                ]
-              ]
+            options: { // 单独配置在.babelrc
+              // presets: [
+              //   [
+              //     '@babel/preset-env'
+              // {
+              //   useBuiltIns: 'usage',
+              //   corejs: 3
+              // }
+              // ]
+              // ]
             }
           }
         ],

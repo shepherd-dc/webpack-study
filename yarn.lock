@@ -2033,7 +2033,7 @@ dom-converter@^0.2:
   dependencies:
     utila "~0.4"
 
-dom-serializer@0:
+dom-serializer@0, dom-serializer@^0.2.1:
   version "0.2.2"
   resolved "https://registry.npm.taobao.org/dom-serializer/download/dom-serializer-0.2.2.tgz?cache=0&sync_timestamp=1573447907918&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdom-serializer%2Fdownload%2Fdom-serializer-0.2.2.tgz#1afb81f533717175d478655debc5e332d9f9bb51"
   integrity sha1-GvuB9TNxcXXUeGVd68XjMtn5u1E=
@@ -2063,6 +2063,13 @@ domhandler@^2.3.0:
   dependencies:
     domelementtype "1"
 
+domhandler@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npm.taobao.org/domhandler/download/domhandler-3.0.0.tgz#51cd13efca31da95bbb0c5bee3a48300e333b3e9"
+  integrity sha1-Uc0T78ox2pW7sMW+46SDAOMzs+k=
+  dependencies:
+    domelementtype "^2.0.1"
+
 domutils@1.5.1:
   version "1.5.1"
   resolved "https://registry.npm.taobao.org/domutils/download/domutils-1.5.1.tgz#dcd8488a26f563d61079e48c9f7b7e32373682cf"
@@ -2078,6 +2085,15 @@ domutils@^1.5.1:
   dependencies:
     dom-serializer "0"
     domelementtype "1"
+
+domutils@^2.0.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/domutils/download/domutils-2.1.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdomutils%2Fdownload%2Fdomutils-2.1.0.tgz#7ade3201af43703fde154952e3a868eb4b635f16"
+  integrity sha1-et4yAa9DcD/eFUlS46ho60tjXxY=
+  dependencies:
+    dom-serializer "^0.2.1"
+    domelementtype "^2.0.1"
+    domhandler "^3.0.0"
 
 duplexify@^3.4.2, duplexify@^3.6.0:
   version "3.7.1"
@@ -2295,6 +2311,13 @@ eslint-plugin-es@^3.0.0:
     eslint-utils "^2.0.0"
     regexpp "^3.0.0"
 
+eslint-plugin-html@^6.0.2:
+  version "6.0.2"
+  resolved "https://registry.npm.taobao.org/eslint-plugin-html/download/eslint-plugin-html-6.0.2.tgz?cache=0&sync_timestamp=1586953892199&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Feslint-plugin-html%2Fdownload%2Feslint-plugin-html-6.0.2.tgz#fcbd293e218d03dd72c147fc999d185c6f5989fe"
+  integrity sha1-/L0pPiGNA91ywUf8mZ0YXG9Zif4=
+  dependencies:
+    htmlparser2 "^4.1.0"
+
 eslint-plugin-import@^2.20.1:
   version "2.20.1"
   resolved "https://registry.npm.taobao.org/eslint-plugin-import/download/eslint-plugin-import-2.20.1.tgz#802423196dcb11d9ce8435a5fc02a6d3b46939b3"
@@ -2332,6 +2355,15 @@ eslint-plugin-promise@^4.2.1:
 eslint-plugin-standard@^4.0.1:
   version "4.0.1"
   resolved "https://registry.npmjs.org/eslint-plugin-standard/-/eslint-plugin-standard-4.0.1.tgz#ff0519f7ffaff114f76d1bd7c3996eef0f6e20b4"
+
+eslint-plugin-vue@^6.2.2:
+  version "6.2.2"
+  resolved "https://registry.npm.taobao.org/eslint-plugin-vue/download/eslint-plugin-vue-6.2.2.tgz#27fecd9a3a24789b0f111ecdd540a9e56198e0fe"
+  integrity sha1-J/7NmjokeJsPER7N1UCp5WGY4P4=
+  dependencies:
+    natural-compare "^1.4.0"
+    semver "^5.6.0"
+    vue-eslint-parser "^7.0.0"
 
 eslint-scope@^4.0.3:
   version "4.0.3"
@@ -2408,7 +2440,7 @@ eslint@^6.8.0:
     text-table "^0.2.0"
     v8-compile-cache "^2.0.3"
 
-espree@^6.1.2:
+espree@^6.1.2, espree@^6.2.1:
   version "6.2.1"
   resolved "https://registry.npm.taobao.org/espree/download/espree-6.2.1.tgz#77fc72e1fd744a2052c20f38a5b575832e82734a"
   integrity sha1-d/xy4f10SiBSwg84pbV1gy6Cc0o=
@@ -3112,6 +3144,16 @@ htmlparser2@^3.3.0:
     entities "^1.1.1"
     inherits "^2.0.1"
     readable-stream "^3.1.1"
+
+htmlparser2@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npm.taobao.org/htmlparser2/download/htmlparser2-4.1.0.tgz#9a4ef161f2e4625ebf7dfbe6c0a2f52d18a59e78"
+  integrity sha1-mk7xYfLkYl6/ffvmwKL1LRilnng=
+  dependencies:
+    domelementtype "^2.0.1"
+    domhandler "^3.0.0"
+    domutils "^2.0.0"
+    entities "^2.0.0"
 
 http-deceiver@^1.2.7:
   version "1.2.7"
@@ -6000,6 +6042,18 @@ verror@1.10.0:
 vm-browserify@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.0.tgz#bd76d6a23323e2ca8ffa12028dc04559c75f9019"
+
+vue-eslint-parser@^7.0.0:
+  version "7.1.0"
+  resolved "https://registry.npm.taobao.org/vue-eslint-parser/download/vue-eslint-parser-7.1.0.tgz?cache=0&sync_timestamp=1589539313907&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue-eslint-parser%2Fdownload%2Fvue-eslint-parser-7.1.0.tgz#9cdbcc823e656b087507a1911732b867ac101e83"
+  integrity sha1-nNvMgj5lawh1B6GRFzK4Z6wQHoM=
+  dependencies:
+    debug "^4.1.1"
+    eslint-scope "^5.0.0"
+    eslint-visitor-keys "^1.1.0"
+    espree "^6.2.1"
+    esquery "^1.0.1"
+    lodash "^4.17.15"
 
 watchpack@^1.6.0:
   version "1.6.0"
