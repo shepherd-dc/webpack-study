@@ -1,7 +1,7 @@
 {
   "name": "webpack-config",
   "version": "1.0.0",
-  "description": "",
+  "description": "webpack core config",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --mode development",
@@ -12,7 +12,8 @@
   "dependencies": {
     "@babel/runtime": "^7.6.0",
     "core-decorators": "^0.20.0",
-    "core-js": "^3.2.1"
+    "core-js": "^3.2.1",
+    "vue": "^2.6.11"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
@@ -39,6 +40,8 @@
     "mini-css-extract-plugin": "^0.9.0",
     "svg-url-loader": "^5.0.0",
     "url-loader": "^4.0.0",
+    "vue-loader": "^15.9.2",
+    "vue-template-compiler": "^2.6.11",
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.8",
     "webpack-dev-server": "^3.10.3"

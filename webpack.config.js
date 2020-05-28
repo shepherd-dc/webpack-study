@@ -4,20 +4,19 @@ const autoprefixer = require('autoprefixer')
 const eslintFriendlyFormatter = require('eslint-friendly-formatter')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   // context: path.resolve(__dirname, '../'), // 默认当前工作目录 process.cwd()
   entry: {
-    main: path.resolve(__dirname, './src/index.js')
+    myLib: path.resolve(__dirname, './src/index.js')
     // list: path.resolve(__dirname, './src/list.js')
   },
   output: {
     path: path.resolve(__dirname, './dist'),
     // publicPath: path.resolve(__dirname, './public'),
-    filename: 'main.js',
-    // filename: '[name].js',
-    // library: '[name]', // '[name]'
-    library: 'myLib',
+    filename: '[name].js', // '[name]'为 entry中的 key
+    library: '[name]',
     libraryTarget: 'umd',
     libraryExport: 'default' // 打包后全局变量不需要.default才能拿到
   },
@@ -27,9 +26,11 @@ module.exports = {
   // watch: true,
   resolve: {
     alias: {
+      vue$: 'vue/dist/vue.esm.js',
       '@': path.resolve(__dirname, './src'),
       '@assets': path.resolve(__dirname, './src/assets')
-    }
+    },
+    extensions: ['.js', '.vue', '.json']
     // mainFields: ['browser', 'module', 'main'], // target=web对应的默认值
   },
   module: {
@@ -150,6 +151,10 @@ module.exports = {
           // 这么多文件，ext不同，所以需要使用[ext]
           name: '@assets/[name].[hash:7].[ext]'
         }
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       }
     ]
   },
@@ -166,9 +171,10 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css'
     }),
+    new VueLoaderPlugin(),
     new HtmlWebPackPlugin({
       template: path.join(__dirname, './public', 'index.html'), // 模板路径
-      inject: 'head', // 自动注入js位置, 默认true('body')
+      // inject: 'head', // 自动注入js位置, 默认true('body')
       favicon: path.join(__dirname, './public', 'favicon.ico') // favicon图标
     }),
     // 添加热替换 HMR plugin

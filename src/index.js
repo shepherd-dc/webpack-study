@@ -1,5 +1,6 @@
 import MyClass from './test/decorater'
 import './test/babel'
+import './app'
 
 MyClass.run('test')
 const myClass = new MyClass('Shepherd', 'Young')
